@@ -1,0 +1,36 @@
+version: '3.5'
+
+services:
+
+  node-api:
+    container_name: slo-tech_v2
+    restart: always
+    ports:
+      - "3000:3000"
+    image: slo-tech_v2-node-js
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      - MONGODB_CLOUD_URI=mongodb://mongo-db/slo-tech_v2
+    command: npm start
+    networks:
+      - slo-tech_v2-network
+    depends_on:
+      - mongo-db
+
+  mongo-db:
+    image: mongo:4.2
+    container_name: slo-tech_v2-mongodb
+    ports:
+      - "27017-27019:27017-27019"
+    networks:
+      - slo-tech_v2-network
+
+networks:
+  slo-tech_v2-network:
+    name: slo-tech_v2-network
+    driver: bridge

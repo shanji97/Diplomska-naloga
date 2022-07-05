@@ -1,4 +1,4 @@
-const pridobiSidebar = require('../pridobiSidebar');
+// const pridobiSidebar = require('../pridobiSidebar');
 const apiPovezava = require('../apiPovezava');
 const axios = require('axios').default;
 const uporabnikUtil = require('../uporabnikUtil');
@@ -7,8 +7,8 @@ const uporabnikUtil = require('../uporabnikUtil');
 const sampleIndex = async (req, res) => {
     res.render('index', {
         title: 'Karjola',
-        uporabnik: uporabnikUtil.prijavljenUporabnik(req),
-        sidebarData: await pridobiSidebar()
+        uporabnik: uporabnikUtil.prijavljenUporabnik(req)
+        // sidebarData: await pridobiSidebar()
 
     });
 }
@@ -16,29 +16,29 @@ const sampleIndex = async (req, res) => {
 const sampleRegister = async (req, res) => {
     res.render('registracija', {
         title: 'Registracija',
-        uporabnik:uporabnikUtil.prijavljenUporabnik(req),
-        sidebarData: await pridobiSidebar()
+        uporabnik:uporabnikUtil.prijavljenUporabnik(req)
+        // sidebarData: await pridobiSidebar()
     });
 }
 const sampleLogin = async (req, res) => {
     res.render('prijava', {
         title: 'Prijava',
-        uporabnik:uporabnikUtil.prijavljenUporabnik(req),
-        sidebarData: await pridobiSidebar()
+        uporabnik:uporabnikUtil.prijavljenUporabnik(req)
+        // sidebarData: await pridobiSidebar()
     });
 }
 const sampleRecover = async (req, res) => {
     res.render('obnoviGeslo', {
         title: 'Ponastavitev gesla',
-        uporabnik: uporabnikUtil.prijavljenUporabnik(req),
-        sidebarData: await pridobiSidebar()
+        uporabnik: uporabnikUtil.prijavljenUporabnik(req)
+        // sidebarData: await pridobiSidebar()
     });
 }
 const sampleUpdate = async (req, res) => {
     res.render('novoGeslo', {
         title: 'Vnesi novo geslo',
-        uporabnik: uporabnikUtil.prijavljenUporabnik(req),
-        sidebarData: await pridobiSidebar()
+        uporabnik: uporabnikUtil.prijavljenUporabnik(req)
+        // sidebarData: await pridobiSidebar()
     });
 }
 const sampleCharts = async (req, res) => {

@@ -1,4 +1,3 @@
-/**Iclude all the neede libraries */
 var createError = require('http-errors');
 var express = require('express');
 var hbs = require('hbs');
@@ -27,7 +26,7 @@ hbs.registerPartials('./app_server/views/partials');
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
 
-require('./app_server/views/helpers/hbsHelpers');
+// require('./app_server/views/helpers/hbsHelpers');
 
 
 
@@ -38,20 +37,20 @@ app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/admin', adminRouter);
-app.use('/predmeti', predmetiRouter);
-app.use('/gradivo', gradivoRouter);
-app.use('/osebje', osebjeRouter);
-app.use('/iskanje', iskanjeRouter);
-app.use('/uporabniki', uporabnikiRouter);
+// app.use('/admin', adminRouter);
+// app.use('/predmeti', predmetiRouter);
+// app.use('/gradivo', gradivoRouter);
+// app.use('/osebje', osebjeRouter);
+// app.use('/iskanje', iskanjeRouter);
+// app.use('/uporabniki', uporabnikiRouter);
 
-app.use('/api/predmeti', predmetiApi);
-app.use('/api/gradivo', gradivoApi);
-app.use('/api/osebje', osebjeApi);
-app.use('/api/moduli', moduliApi);
-app.use('/api/iskanje', iskanjeApi);
+// app.use('/api/predmeti', predmetiApi);
+// app.use('/api/gradivo', gradivoApi);
+// app.use('/api/osebje', osebjeApi);
+// app.use('/api/moduli', moduliApi);
+// app.use('/api/iskanje', iskanjeApi);
 app.use('/api/uporabniki', uporabnikiApi);
-app.use('/api/db', bazaApi);
+// app.use('/api/db', bazaApi);
 
 // app.use('/', (req, res, next) => {
 //     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');

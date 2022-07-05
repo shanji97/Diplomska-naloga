@@ -5,10 +5,6 @@ var uporabnikiCtrl = require('../controllers/uporabnikiController');
 
 router.get('/', indexCtrl.sampleIndex);
 
-router.get('/db',indexCtrl.sampleDB);
-router.post('/db/vnos', indexCtrl.vnosBaze);
-router.post('/db/izbris', indexCtrl.izbrisBaze);
-
 router.get('/registracija', indexCtrl.sampleRegister);
 router.post('/registracija', uporabnikiCtrl.kreirajNovegaUporabnika);
 

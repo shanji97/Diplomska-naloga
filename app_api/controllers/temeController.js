@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
-const Novica = mongoose.model("Novica");
+const Tema = mongoose.model("Tema");
 
 const prikaziVse = (req, res) => {
-    Novica
+    Tema
         .find()
-        .exec((napaka, novice) => {
+        .exec((napaka, teme) => {
             if (napaka) {
                 res.status(500).json(napaka);
             }
             else {
                 res.status(200).json(
-                    novice.map(novica => {
+                    teme.map(tema => {
                         return {
-                            "_id": novica.id,
-                            "naslov": novica.naslov,
-                            "avtor": novica.avtor,
-                            "kreirana": novica.kreirana,
-                            "besedilo": novica.besedilo,
-                            "komentarji": novica.komentarji
+                            "_id": tema.id,
+                            "naslov": tema.naslov,
+                            "avtor": tema.avtor,
+                            "zadnjiAvtor": tema.zadnjiAvtor,
+                            "posodobljena":tema.posodobljena,
+                            "kreirana": tema.kreirana,
+                            "besedilo": tema.besedilo,
+                            "komentarji": tema.komentarjiTeme
                         };
                     })
                 );
@@ -25,43 +27,44 @@ const prikaziVse = (req, res) => {
         });
 }
 
-const posljiNovico = (req, res) => {
-    Novica.create({
+const posljiTemo = (req, res) => {
+    Tema.create({
         naslov: req.body.naslov,
         avtor: req.body.avtor,
+        zadnjiAvtor: req.body.avtor,
         kategorija: req.body.kategorija,
-        besedilo: req.body.besedilo,
-    }, (napaka, novica) => {
+        besedilo: req.body.besedilo
+    }, (napaka, tema) => {
         if (napaka) {
             return res.status(400).json(napaka);
         }
         else {
-            return res.status(201).json(novica);
+            return res.status(201).json(tema);
         }
     });
 }
 
 const prikaziIzbrano = (req, res) => {
-    Novica
-        .findById(req.params.idNovice)
-        .exec((napaka, novica) => {
+    Tema
+        .findById(req.params.idTeme)
+        .exec((napaka, tema) => {
             if (napaka) {
                 return res.status(500).json(napaka);
             }
-            else if (!novica) {
+            else if (!tema) {
                 return res.status(404).json({
-                    "sporočilo": "Ne najdem novice. Id novice je obvezen parameter."
+                    "sporočilo": "Ne najdem teme. Id teme je obvezen parameter."
                 });
             }
-            return res.status(200).json(novica);
+            return res.status(200).json(tema);
         });
 }
 
 const izbrisiIzbrano = (req, res) => {
-    const { idNovice } = req.params;
-    if (idNovice) {
-        Novica
-            .findByIdAndRemove(idNovice)
+    const { idTeme } = req.params;
+    if (idTeme) {
+        Tema
+            .findByIdAndRemove(idTeme)
             .exec((napaka) => {
                 if (napaka) {
                     return res.status(500).json(napaka);
@@ -72,17 +75,18 @@ const izbrisiIzbrano = (req, res) => {
             });
     }
     else {
-        return res.status(404).json({ "sporočilo": "Ne najdem novice. Id novice je obvezen parameter." });
+        return res.status(404).json({ "sporočilo": "Ne najdem teme. Id teme je obvezen parameter." });
     }
+
 }
 
 const posodobiIzbrano = (req, res) => {
-    Novica
-        .updateOne({ "_id": req.params.idNovice },
+    Tema
+        .updateOne({ "_id": req.params.idTeme },
             {
                 $set: {
                     naslov: req.body.novNaslov,
-                    avtor: req.body.novAvtor,
+                    zadnjiAvtor: req.body.novAvtor,
                     posodobljena: Date.now,
                     besedilo: req.body.novoBesedilo
                 }
@@ -92,16 +96,16 @@ const posodobiIzbrano = (req, res) => {
                     return res.status(400).json(napaka);
                 } else {
                     return res.status(200).json({
-                        "sporočilo": "Novica uspešno spremenjena."
+                        "sporočilo": "Teme uspešno spremenjena."
                     });
                 }
             }
-        )
+        );
 }
 
 module.exports = {
     prikaziVse,
-    posljiNovico,
+    posljiTemo,
     prikaziIzbrano,
     izbrisiIzbrano,
     posodobiIzbrano

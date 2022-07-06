@@ -27,8 +27,8 @@ mongoose.connection.on('disconnected', () => {
 
 require('../models/user.js');
 require('../models/novica.js');
-// require('../models/tema.js');
-// require('../models/maliOglas.js');
+require('../models/tema.js');
+require('../models/maliOglas.js');
 
 const disconnect = async (message) => {
     await mongoose.connection.close();

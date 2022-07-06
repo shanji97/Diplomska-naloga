@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
-const Novica = mongoose.model("Novica");
+const MaliOglas = mongoose.model("MaliOglas");
 
 const prikaziVse = (req, res) => {
-    Novica
+    MaliOglas
         .find()
-        .exec((napaka, novice) => {
+        .exec((napaka, teme) => {
             if (napaka) {
                 res.status(500).json(napaka);
             }
             else {
                 res.status(200).json(
-                    novice.map(novica => {
+                    teme.map(maliOglas => {
                         return {
-                            "_id": novica.id,
-                            "naslov": novica.naslov,
-                            "avtor": novica.avtor,
-                            "kreirana": novica.kreirana,
-                            "besedilo": novica.besedilo,
-                            "komentarji": novica.komentarji
+                            "_id": maliOglas.id,
+                            "naslov": maliOglas.naslov,
+                            "avtor": maliOglas.avtor,
+                            "tipOglasa": maliOglas.tipOglasa,
+                            "besedilo": maliOglas.besedilo,
+                            "cena": maliOglas.cena,
+                            "kontaktnaStevilka": maliOglas.kontaktnaStevilka,
+                            "kontaktenMail": maliOglas.kontaktenMail
                         };
                     })
                 );
@@ -25,43 +27,46 @@ const prikaziVse = (req, res) => {
         });
 }
 
-const posljiNovico = (req, res) => {
-    Novica.create({
+const posljiMaliOglas = (req, res) => {
+    MaliOglas.create({
         naslov: req.body.naslov,
         avtor: req.body.avtor,
-        kategorija: req.body.kategorija,
+        tipOglasa: req.body.tipOglasa,
         besedilo: req.body.besedilo,
-    }, (napaka, novica) => {
+        cena: req.body.cena,
+        kontaktnaStevilka: req.body.kontaktnaStevilka,
+        kontaktenMail: req.body.kontaktenMail
+    }, (napaka, maliOglas) => {
         if (napaka) {
             return res.status(400).json(napaka);
         }
         else {
-            return res.status(201).json(novica);
+            return res.status(201).json(maliOglas);
         }
     });
 }
 
 const prikaziIzbrano = (req, res) => {
-    Novica
-        .findById(req.params.idNovice)
-        .exec((napaka, novica) => {
+    MaliOglas
+        .findById(req.params.idOglasa)
+        .exec((napaka, maliOglas) => {
             if (napaka) {
                 return res.status(500).json(napaka);
             }
-            else if (!novica) {
+            else if (!maliOglas) {
                 return res.status(404).json({
-                    "sporočilo": "Ne najdem novice. Id novice je obvezen parameter."
+                    "sporočilo": "Ne najdem oglasa. Id oglasa je obvezen parameter."
                 });
             }
-            return res.status(200).json(novica);
+            return res.status(200).json(maliOglas);
         });
 }
 
 const izbrisiIzbrano = (req, res) => {
-    const { idNovice } = req.params;
-    if (idNovice) {
-        Novica
-            .findByIdAndRemove(idNovice)
+    const { idOglasa } = req.params;
+    if (idOglasa) {
+        MaliOglas
+            .findByIdAndRemove(idOglasa)
             .exec((napaka) => {
                 if (napaka) {
                     return res.status(500).json(napaka);
@@ -72,18 +77,16 @@ const izbrisiIzbrano = (req, res) => {
             });
     }
     else {
-        return res.status(404).json({ "sporočilo": "Ne najdem novice. Id novice je obvezen parameter." });
+        return res.status(404).json({ "sporočilo": "Ne najdem oglasa. Id oglasa je obvezen parameter." });
     }
 }
 
 const posodobiIzbrano = (req, res) => {
-    Novica
-        .updateOne({ "_id": req.params.idNovice },
+    MaliOglas
+        .updateOne({ "_id": req.params.idOglasa },
             {
                 $set: {
-                    naslov: req.body.novNaslov,
-                    avtor: req.body.novAvtor,
-                    posodobljena: Date.now,
+                    posodobljen: Date.now,
                     besedilo: req.body.novoBesedilo
                 }
             },
@@ -92,16 +95,16 @@ const posodobiIzbrano = (req, res) => {
                     return res.status(400).json(napaka);
                 } else {
                     return res.status(200).json({
-                        "sporočilo": "Novica uspešno spremenjena."
+                        "sporočilo": " uspešno spremenjena."
                     });
                 }
             }
-        )
+        );
 }
 
 module.exports = {
     prikaziVse,
-    posljiNovico,
+    posljiMaliOglas,
     prikaziIzbrano,
     izbrisiIzbrano,
     posodobiIzbrano

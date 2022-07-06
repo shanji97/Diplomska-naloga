@@ -14,8 +14,9 @@ var indexRouter = require('./app_server/routes/indexRouter');
 // var uporabnikiRouter = require('./app_server/routes/uporabnikiRouter');
 
 var noviceApi = require('./app_api/routes/noviceRouter');
-var iskanjeApi = require('./app_api/routes/iskanjeRouter');
 var uporabnikiApi = require('./app_api/routes/uporabnikiRouter');
+var temeApi = require('./app_api/routes/temeRouter');
+var oglasiApi = require('./app_api/routes/maliOglasRouter');
 // tema
 // oglas
 
@@ -26,9 +27,7 @@ hbs.registerPartials('./app_server/views/partials');
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'hbs');
 
-// require('./app_server/views/helpers/hbsHelpers');
-
-
+require('./app_server/views/helpers/hbsHelpers');
 
 app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '50MB' }));
@@ -44,20 +43,11 @@ app.use('/', indexRouter);
 // app.use('/iskanje', iskanjeRouter);
 // app.use('/uporabniki', uporabnikiRouter);
 
-// app.use('/api/predmeti', predmetiApi);
-// app.use('/api/gradivo', gradivoApi);
-// app.use('/api/osebje', osebjeApi);
-// app.use('/api/moduli', moduliApi);
-// app.use('/api/iskanje', iskanjeApi);
+//API
 app.use('/api/uporabniki', uporabnikiApi);
-// app.use('/api/db', bazaApi);
-
-// app.use('/', (req, res, next) => {
-//     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
-//     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//     next();
-// });
-
+app.use('/api/novice', noviceApi);
+app.use('/api/teme', temeApi);
+app.use('/api/oglasi', oglasiApi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

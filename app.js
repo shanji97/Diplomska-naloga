@@ -17,8 +17,6 @@ var noviceApi = require('./app_api/routes/noviceRouter');
 var uporabnikiApi = require('./app_api/routes/uporabnikiRouter');
 var temeApi = require('./app_api/routes/temeRouter');
 var oglasiApi = require('./app_api/routes/maliOglasRouter');
-// tema
-// oglas
 
 var app = express();
 
@@ -36,6 +34,7 @@ app.use(cookieParser());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+// app.use('/forum', forumRouter);
 // app.use('/admin', adminRouter);
 // app.use('/predmeti', predmetiRouter);
 // app.use('/gradivo', gradivoRouter);

@@ -17,7 +17,12 @@ const sampleRegister = async (req, res) => {
     res.render('registracija', {
         title: 'Registracija',
         uporabnik:uporabnikUtil.prijavljenUporabnik(req)
-        // sidebarData: await pridobiSidebar()
+    });
+}
+const forumRegister = async (req, res) => {
+    res.render('forum', {
+        title: 'Forum',
+        // uporabnik:uporabnikUtil.prijavljenUporabnik(req)
     });
 }
 const sampleLogin = async (req, res) => {

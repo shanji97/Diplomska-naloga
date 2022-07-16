@@ -110,8 +110,8 @@ app.use(function(err, req, res, next) {
 
     if (res.statusCode == 404) {
         res.render('error', {
-            title: 'Stran na tem naslovu ne obstaja',
-            error: ''
+            title: '404 Stran na tem naslovu ne obstaja',
+            error: 'test'
         });
     }
     else if (res.statusCode < 500) {

@@ -1,0 +1,39 @@
+<aside class="col-sm-12 col-md-12 col-lg-3 m-0 p-sm-0 px-md-2 mt-3">
+    <div class="content bg-dark p-3">
+        <div class="menu-icon mb-1" data-toggle="collapse" data-target="#sidebarMenu">
+            <span class="fas fa-bars"></span>
+        </div>
+        <div class="collapse show" id="sidebarMenu">
+            <!--makeUnique @index '+' @../index helper je uporabljen zato da se doseze unique id za dropdowne, ker drugace se ne zapirajo/odpirajo kot bi se mogli-->
+            <!--Na vsaki stopnji se pogleda ce je to dejanski predmet ki mora met povezavo(ce je final) da se ga pobarva z lvl4 zeleno, drugace nadaljuj izpis-->
+            {{#each sidebarData}}
+                <button class="dropdown-btn dropdown-lvl-1 btn btn-secondary mr-2 my-1" data-toggle="collapse" data-target="#lvl1DropdownId{{@index}}">{{this.naziv}}</button>
+                <div id="lvl1DropdownId{{@index}}" class="collapse pl-2">
+                    {{#each this.fields}}
+                        {{#if this.final}}      
+                            <a class="dropdown-btn dropdown-lvl-4 btn btn-secondary mr-2 my-1" href="/predmeti/{{this.id}}">{{this.naziv}}</a>
+                        {{else}}
+                            <button class="dropdown-btn dropdown-lvl-2 btn btn-secondary mr-2 my-1" data-toggle="collapse" data-target="#lvl2DropdownId{{makeUnique @index '+' @../index}}">{{this.naziv}}</button>
+                            <div id="lvl2DropdownId{{makeUnique @index '+' @../index}}" class="collapse  pl-2">
+                                {{#each this.fields}}
+                                    {{#if this.final}}      
+                                        <a class="dropdown-btn dropdown-lvl-4 btn btn-secondary mr-2 my-1" href="/predmeti/{{this.id}}">{{this.naziv}}</a>
+                                    {{else}}
+                                        <button class="dropdown-btn dropdown-lvl-3 btn btn-secondary mr-2 my-1" data-toggle="collapse" data-target="#lvl3DropdownId{{makeUnique @index '+' @../index}}">{{this.naziv}}</button>
+                                        <div id="lvl3DropdownId{{makeUnique @index '+' @../index}}" class="collapse pl-2">
+                                            {{#each this.fields}}
+                                                <a class="dropdown-btn dropdown-lvl-4 btn btn-secondary mr-2 my-1" href="/predmeti/{{this.id}}">{{this.naziv}}</a>
+                                            {{/each}}
+                                        </div>
+                                    {{/if}}
+                                {{/each}}
+                            </div>
+                        {{/if}}
+                    {{/each}}
+                </div>
+            {{/each}}
+            <a href="/statistike" class="dropdown-btn dropdown-lvl-1 btn btn-secondary mr-2 my-1">Statistike</a>
+        </div>
+    </div>
+</aside>
+            

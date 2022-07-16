@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="/public/styles/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"
+        type="text/css">
+    <script src="/public/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/fontawesome.min.js"></script>
+    <script src="/public/js/javascript.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <img src="images/logo.svg" alt="Logo" title="Slo-Tech">
+        <button class="hamburger hamburger--squeeze" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+    </div>
+
+    <div class="mobile_menu">
+        <b>Novice</b>
+        <ul>
+            <li><a href="poslji-novico.html"><i class="fas fa-folder-plus"></i> Pošlji novico</a></li>
+            <li><a href="arhiv-novic.html"><i class="fas fa-folder-open"></i> Arhiv novic</a></li>
+        </ul>
+        <b>Forum</b>
+        <ul>
+            <li><i class="fab fa-wpforms"></i><a href="forum.html">Forum</a></li>
+            <li><i class="fas fa-history"></i> <a href="teme-zadnjih-24-ur.html">Teme zadnjih 24 ur</a></li>
+            <li><i class="fas fa-ad"></i> <a href="mali-oglasi.html">Mali oglasi</a></li>
+        </ul>
+        <b>Ostalo</b>
+        <ul>
+            <li><i class="fas fa-align-left"></i> <a href="pravila.html">Pravila</a></li>
+            <li><i class="fas fa-at"></i> <a href="kontakt.html">Kontakt</a></li>
+            <li><i class="fas fa-unlock"></i> <a href="pozabljeno-geslo.html">Pozabljeno geslo</a></li>
+            <li><i class="fas fa-user-plus"></i> <a href="/registracija">Registracija</a></li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="sidebar">
+            <img src="images/logo.svg" alt="Logo" title="Slo-Tech">
+
+            <div id="prijava" class="box">
+                <div class="title">Prijava <i class="fas fa-caret-down"></i></div>
+                <div class="box_content">
+                    <div class="input_icon">
+                        <div class="icon"><i class="fas fa-user"></i></div>
+                        <input type="text" name="username" placeholder="Uporabniško ime">
+                    </div>
+                    <div class="input_icon">
+                        <div class="icon"><i class="fas fa-lock"></i></div>
+                        <input type="password" name="password" placeholder="Geslo">
+                    </div>
+
+                    <div class="remember_me">
+                        <input type="checkbox" name="remeber_me" class="display_none">
+                        <i class="fas fa-square"></i>
+                        Zapomni si me
+                    </div>
+
+                    <input type="submit" name="login" value="Prijava">
+
+                    <div class="register_box">
+                        <a href="/registracija">Nov uporabnik?</a>
+                        <a href="pozabljeno-geslo.html">Pozabljeno geslo?</a>
+                    </div>
+                </div>
+            </div>
+
+            <div id="uporabniskoIme" class="box">
+                <div class="title">Uporabniško ime <i class="fas fa-caret-down"></i></div>
+                <div class="box_content">
+                    <ul>
+                        <li><i class="fas fa-user"></i> <a href="profil.html">Profil</a></li>
+                        <li><i class="fas fa-comment"></i> <a href="zasebna-sporocila.html">Zasebna sporočila (1)</a>
+                        </li>
+                        <li class="logout"><i class="fas fa-power-off"></i> <a href="odjava.html">Odjava</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="title">Novice <i class="fas fa-caret-down"></i></div>
+                <div class="box_content">
+                    <ul>
+                        <li><a href="poslji-novico.html"><i class="fas fa-folder-plus"></i> Pošlji novico</a></li>
+                        <li><a href="arhiv-novic.html"><i class="fas fa-folder-open"></i> Arhiv novic</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="title">Forum <i class="fas fa-caret-down"></i></div>
+                <div class="box_content">
+                    <ul>
+                        <li><i class="fab fa-wpforms"></i><a href="forum.html">Forum</a></li>
+                        <li><i class="fas fa-history"></i> <a href="teme-zadnjih-24-ur.html">Teme zadnjih 24 ur</a></li>
+                        <li><i class="fas fa-ad"></i> <a href="mali-oglasi.html">Mali oglasi</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="title">Ostalo <i class="fas fa-caret-down"></i></div>
+                <div class="box_content">
+                    <ul>
+                        <li><i class="fas fa-align-left"></i> <a href="pravila.html">Pravila</a></li>
+                        <li><i class="fas fa-at"></i> <a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        {{{body}}}
+        <div class="to_top"><i class="fas fa-arrow-circle-up" title="Na vrh"></i></div>
+</body>
+
+</html>

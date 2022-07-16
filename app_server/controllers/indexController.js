@@ -13,10 +13,9 @@ const sampleIndex = async (req, res) => {
     });
 }
 
-const sampleRegister = async (req, res) => {
+const registracija = async (req, res) => {
     res.render('registracija', {
         title: 'Registracija',
-        uporabnik:uporabnikUtil.prijavljenUporabnik(req)
     });
 }
 const forumRegister = async (req, res) => {
@@ -28,7 +27,7 @@ const forumRegister = async (req, res) => {
 const sampleLogin = async (req, res) => {
     res.render('prijava', {
         title: 'Prijava',
-        uporabnik:uporabnikUtil.prijavljenUporabnik(req)
+        uporabnik: uporabnikUtil.prijavljenUporabnik(req)
         // sidebarData: await pridobiSidebar()
     });
 }
@@ -46,30 +45,34 @@ const sampleUpdate = async (req, res) => {
         // sidebarData: await pridobiSidebar()
     });
 }
-const sampleCharts = async (req, res) => {
-    res.render('statistike', {
-        title: 'Statistike',
-        uporabnik: uporabnikUtil.prijavljenUporabnik(req),
-        chartData: [
-            {
-                naslovGrafa: "Razporeditev uporabnikov po krajih",
-                id: "razporeditevUporabnikov"
-            },{
-                naslovGrafa: "Število gradiv pri vsakem predmetu",
-                id: "steviloGradiv"
-            }
-        ],
-        sidebarData: await pridobiSidebar()
-    });
-}
+
 const samplePasswordConfirmation = (req, res) => {
     res.render('potditevObnoveGesla', {
         title: 'Geslo uspešno ponastavljeno!',
         uporabnik: uporabnikUtil.prijavljenUporabnik(req)
     });
 }
+
+const forum = (req, res) => {
+    res.render('forum', {
+        title: 'forum',
+        uporabnik: uporabnikUtil.prijavljenUporabnik(req)
+    });
+}
+
+const vnesiTemo = (req, res) => {
+    res.render('vnesiTemo', {
+        title: "Vnos nove teme"
+    })
+}
+
+const poglejTemo = (req, res) =>{ 
+    res.render('forumPost', {
+        title: 'Ime teme'
+    })
+}
 const sampleTermsOfService = async (req, res) => {
-    res.render('splosniPogoji', {
+    res.render('', {
         title: 'Splošni pogoji',
         uporabnik: uporabnikUtil.prijavljenUporabnik(req),
         sidebarData: await pridobiSidebar(),
@@ -94,10 +97,10 @@ const vnosBaze = async (req, res) => {
     }).then((odgovor) => {
         res.redirect('/db');
     })
-    .catch((napaka) => {
-        console.log(napaka);
-        res.redirect('/db');
-    });
+        .catch((napaka) => {
+            console.log(napaka);
+            res.redirect('/db');
+        });
 }
 
 const izbrisBaze = (req, res) => {
@@ -108,25 +111,18 @@ const izbrisBaze = (req, res) => {
     }).then((odgovor) => {
         res.redirect('/db');
     })
-    .catch((napaka) => {
-        console.log(napaka);
-        res.redirect('/db');
-    });
+        .catch((napaka) => {
+            console.log(napaka);
+            res.redirect('/db');
+        });
 
 }
 
 module.exports = {
-    
-    sampleIndex,
-    sampleRegister,
-    sampleLogin,
-    sampleRecover,
-    sampleUpdate,
-    sampleTermsOfService,
-    sampleCharts,
-    samplePasswordConfirmation,
-    sampleDB,
-    vnosBaze,
-    izbrisBaze
+    forum, 
+    poglejTemo,
+    registracija,
+    vnesiTemo,
+
 };
 

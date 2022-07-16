@@ -1,6 +1,7 @@
 :root {
     --white: #fff;
     --black: #222;
+    --black_005: rgba(34, 34, 34, 0.05);
     --black_01: rgba(34, 34, 34, 0.1);
     --black_09: rgba(34, 34, 34, 0.9);
     --black_darker: #181b1f;
@@ -11,6 +12,7 @@
     --gray_2_09: rgba(131, 139, 144, 0.9);
     --red: #d32f2f;
     --red_02: rgba(211, 47, 47, 0.2) !important;
+    --green: #388e3c;
     --st_lime: #c0d06c;
     --st_lime_07: rgba(192, 208, 108, 0.7);
     --st_lime_04: rgba(192, 208, 108, 0.4);
@@ -25,12 +27,25 @@ body {
     padding: 0; margin: 0; position: relative; height: 100%;
 }
 
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 h1, h2, h3, h4 {
     font-family: 'Oswald', sans-serif;
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none; color: var(--st_lime); transition: 0.3s;
+}
+
+a:hover {
+    text-decoration: none; color: var(--st_lime_07); transition: 0.3s;
 }
 
 p {
@@ -70,7 +85,7 @@ p {
 }
 
 .main .sidebar {
-    background: var(--black); width: 320px; padding: 40px 20px; box-sizing: border-box;
+    background: var(--black); width: 320px; padding: 40px 20px 0 20px; box-sizing: border-box;
 }
 
 .main .sidebar img {
@@ -171,12 +186,24 @@ p {
     border-bottom: solid 1px var(--gray_2_05); margin: 0 0 20px 0; padding-bottom: 12px;
 }
 
+.main .content input {
+    width: 100%; margin-bottom: 12px; padding: 8px 12px; box-sizing: border-box; border: solid 1px var(--gray_2_05); outline: none;
+}
+
+.main .content select {
+    width: 100%; margin-bottom: 12px; padding: 8px 12px; box-sizing: border-box; border: solid 1px var(--gray_2_05); outline: none;
+}
+
+.main .content select option:disabled {
+    background-color: var(--gray_2_02);
+}
+
 .forum {
     padding-bottom: 60px !important;
 }
 
 .forum a {
-    color: var(--black); font-size: 16px; font-weight: 700; margin-bottom: 8px; display: inline-block;
+    color: var(--black); font-size: 16px; display: inline-block;
 }
 
 .forum a:hover {
@@ -185,6 +212,10 @@ p {
 
 .forum .topic {
     border: solid 1px var(--gray_2_05); border-top: none; padding: 12px; box-sizing: border-box; display: flex; position: relative;
+}
+
+.forum .topic a {
+    font-weight: 700; margin-bottom: 8px;
 }
 
 .forum .topic_header {
@@ -223,8 +254,8 @@ p {
     font-size: 12px;
 }
 
-.forum .topic:nth-child(2n+0){
-    background: var(--black_01);
+.forum .topic:nth-child(2n+1){
+    background: var(--black_005);
 }
 
 .forum .topic:last-child {
@@ -267,8 +298,166 @@ a.btn_new_topic:hover {
     background: var(--red_02) !important;
 }
 
-.forum .locked i.fas {
-    color: var(--red);
+.forum .post_container {
+    padding: 12px; border: solid 1px var(--gray_2_05); margin-bottom: 20px;
+}
+
+.forum .post_container .post_header {
+    font-size: 16px; display: flex; padding-bottom: 12px; margin-bottom: 12px; border-bottom: solid 1px var(--gray_2_02); align-items: center;
+}
+
+.forum .post_container .post_header a {
+    font-weight: 700;
+}
+
+.forum .post_container .post_header .left {
+    width: 60px;
+}
+
+.forum .post_container .post_header .left .circle {
+    width: 40px; height: 40px; border: solid 1px var(--gray_2_05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gray_2_09);
+}
+
+.forum .post_container .post_header .right {
+    width: calc(100% - 80px); font-size: 14px;
+}
+
+.forum .post_container .post_header .right p {
+    margin-top: 4px;
+}
+
+.forum .post_container .post_header .icons {
+    width: 40px; display: flex; justify-content: space-between;
+}
+
+.forum .post_container .post_header .icons i.fa-trash {
+    color: var(--red); cursor: pointer; margin-left: auto;
+}
+
+.forum .post_container .post_header .icons i.fa-lock, .forum .post_container .post_header .icons i.fa-lock-open {
+    color: var(--black); cursor: pointer;
+}
+
+.forum .post_container .message {
+    font-size: 14px;
+}
+
+.forum .post_container .signature {
+    font-size: 13px; border-top: solid 1px var(--gray_2_02); margin-top: 8px; padding-top: 8px; color: var(--gray_2_09);
+}
+
+.forum .post_container:nth-child(2n+1) {
+    background: var(--black_005);
+}
+
+.ads {
+    padding-bottom: 60px !important;
+}
+
+.ads a {
+    color: var(--black); font-size: 16px; display: inline-block;
+}
+
+.ads a:hover {
+    color: var(--st_lime); transition: 0.3s;
+}
+
+.ads .ads_container {
+    padding: 12px; border: solid 1px var(--gray_2_05); margin-bottom: 20px;
+}
+
+.ads .ads_container .ads_header {
+    font-size: 16px; display: flex; padding-bottom: 12px; margin-bottom: 12px; border-bottom: solid 1px var(--gray_2_02); align-items: center;
+}
+
+.ads .ads_container .ads_header a {
+    font-weight: 700;
+}
+
+.ads .ads_container .ads_header .left {
+    width: 60px;
+}
+
+.ads .ads_container .ads_header .left .circle {
+    width: 40px; height: 40px; border: solid 1px var(--gray_2_05); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gray_2_09);
+}
+
+.ads .ads_container .ads_header .right {
+    width: calc(100% - 80px); font-size: 14px;
+}
+
+.ads .ads_container .ads_header .right p {
+    margin-top: 4px;
+}
+
+.ads .ads_container .ads_header .icons {
+    width: 40px; display: flex; justify-content: space-between;
+}
+
+.ads .ads_container .ads_header .icons i.fa-trash {
+    color: var(--red); cursor: pointer; margin-left: auto;
+}
+
+.ads .ads_container .message {
+    font-size: 14px;
+}
+
+.ads .ads_container .signature {
+    font-size: 13px; border-top: solid 1px var(--gray_2_02); margin-top: 8px; padding-top: 8px; color: var(--gray_2_09);
+}
+
+.ads .ads_container:nth-child(2n+1) {
+    background: var(--black_005);
+}
+
+.ads .locked {
+    background: var(--red_02) !important;
+}
+
+.register, .forgotten_password, .ads_new {
+    width: 100%; max-width: 500px; box-sizing: border-box; margin: 0px auto;
+}
+
+.register .error, .forgotten_password .error, .ads_new .error {
+    color: var(--red); display: none; text-align: center; font-size: 14px; margin-bottom: 20px;
+}
+
+.register button[type="submit"], .forgotten_password button[type="submit"], .ads_new button[type="submit"] {
+    background: var(--st_lime); border: none; padding: 8px 12px 8px 28px; outline: none; width: 100%; box-sizing: border-box; margin: 32px auto 0 auto;
+    caret-color: var(--white); color: var(--white); transition: 0.3s; width: 200px; display: block;
+}
+
+.register button[type="submit"]:hover, .forgotten_password button[type="submit"]:hover, .ads_new button[type="submit"]:hover {
+    background: var(--st_lime_07); transition: 0.3s; cursor: pointer; 
+}
+
+.register_text {
+    margin-bottom: 40px;
+}
+
+.register_text p {
+    margin-bottom: 12px;
+}
+
+.forgotten_password p {
+    text-align: center; margin-bottom: 40px;
+}
+
+.ads_new .checkbox {
+    margin-top: 20px;
+}
+
+.create_topic_container, .reply_container {
+    margin-bottom: 60px;
+}
+
+.create_topic_container button.create_topic, .reply_container button.reply_post {
+    background: var(--st_lime); text-align: center; text-transform: uppercase; transition: 0.3s; color: var(--white); font-weight: 400; padding: 8px 12px; margin: 20px 0 0 auto; display: block;
+    border: none;
+}
+
+.create_topic_container button.create_topic:hover, .reply_container button.reply_post:hover {
+    background: var(--st_lime_07); transition: 0.3s; cursor: pointer;
 }
 
 .pagination {
@@ -313,27 +502,77 @@ a.btn_new_topic:hover {
 }
 
 .popup_bg {
-    height: 100%; width: 100%; background: var(--black_09); position: fixed; top: 0; left: 0; display: none;
+    height: 100%; width: 100%; background: var(--black_09); position: fixed; top: 0; left: 0; display: none; z-index: 1;
 }
 
 .popup_content {
-    width: 90%; max-width: 500px; background: #fff; padding: 12px 20px; box-sizing: border-box; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none;
+    width: 90%; max-width: 500px; background: #fff; padding: 12px 20px; box-sizing: border-box; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; 
+    z-index: 2;
 }
 
 .popup_content .buttons {
     display: flex; margin-top: 20px;
 }
 
-.popup_content button.cancel {
-    background: var(--st_blue); padding: 8px 12px; border: none; outline: none; cursor: pointer; color: var(--white);
+.popup_content button {
+    padding: 8px 12px; border: none; outline: none; cursor: pointer; color: var(--white);
 }
 
-.popup_content button.delete {
-     background: var(--red); padding: 8px 12px; border: none; outline: none; cursor: pointer; color: var(--white); margin-left: auto;
+.popup_content button.cancel {
+    background: var(--st_blue); ;
+}
+
+.popup_content button.delete, .popup_content button.lock {
+     background: var(--red); margin-left: auto;
+}
+
+.popup_content button.unlock {
+     background: var(--green); margin-left: auto;
 }
 
 .popup_content button:hover {
     opacity: 0.8;
+}
+
+.checkbox {
+    display: flex; justify-content: center; align-items: center; margin-bottom: 16px;
+}
+
+.checkbox i {
+    font-size: 20px; cursor: pointer; margin-right: 8px; color: var(--gray_2_05);
+}
+
+.checkbox input {
+    display: none;
+}
+
+.page_404 {
+    margin: 0px auto; width: 100%; max-width: 800px; position: relative;
+}
+
+.page_404 h1 {
+    font-size: 60px; text-align: center; position: absolute; width: 100%; margin: 0;
+}
+
+.page_404 img {
+    width: 100%;
+}
+
+.page_404 .text {
+    position: absolute; bottom: 0; width: 100%;
+}
+
+.page_404 .text p {
+    margin-bottom: 8px; text-align: center;
+}
+
+.page_404 a {
+    background: var(--st_lime); border: none; padding: 8px 12px; outline: none; width: 100%; box-sizing: border-box; margin: 32px auto 0 auto;
+    caret-color: var(--white); color: var(--white); transition: 0.3s; width: 200px; display: block; text-align: center;
+}
+
+.page_404 a:hover {
+    background: var(--st_lime_07); transition: 0.3s; cursor: pointer; 
 }
 
 @media only screen and (max-width: 800px) {
@@ -346,7 +585,15 @@ a.btn_new_topic:hover {
     }
     
     .main {
-        padding-top: 60px;
+        padding-top: 60px; height: auto; min-height: auto;
+    }
+    
+    .main .content h1 {
+        font-size: 24px;
+    }
+    
+    .register_text h2 {
+        font-size: 20px;
     }
     
     .main .content {
@@ -354,9 +601,35 @@ a.btn_new_topic:hover {
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .page_404 {
+        top: 50%; transform: translateY(-60%);
+    }
+    
+    .page_404 .text {
+        bottom: -40px;
+    }
+    
+    .page_404 h1 {
+        top: -20px;
+    }
+}
+
 @media only screen and (max-width: 500px) {
     .main {
         padding-top: 70px;
+    }
+    
+    .main .content h1 {
+        font-size: 20px;
+    }
+    
+    .register_text h2 {
+        font-size: 16px;
+    }
+    
+    .register_text p {
+        font-size: 14px;
     }
     
     .main .content {
@@ -377,6 +650,22 @@ a.btn_new_topic:hover {
     
     .forum .topic > div:nth-child(5) {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .page_404 .text {
+        bottom: -80px;
+    }
+    
+    .page_404 h1 {
+        top: -60px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .main .content h1 {
+        font-size: 16px;
     }
 }
 

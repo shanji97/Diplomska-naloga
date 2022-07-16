@@ -1,0 +1,35 @@
+   <div class="content">
+                <h1>{{title}}</h1>
+                     
+                <div class="register_text">
+                    <h2>Navodilo in pojasnilo za izpolnjevanje podatkov</h2>
+                    <p>Polje osnovni podatki je treba obvezno izpolniti za registracijo na strani. Registracija je potrebna samo, če želite aktivno sodelovati na strani, npr. odpirati nove teme oz. v njih sodelovati. Registracija je potrebna tudi, če želite, da si stran zapomni, katere teme in odgovore ste že videli in za uporabo sistema zasebnih sporočil.</p>
+                    <p>V kolikor želite stran samo prebirati, registracija ni potrebna.</p>
+                    <p>Izpolnitev polja osebni podatki za sodelovanje na strani ni potrebno, podatke vanj vpišite izključno, če to želite. Slo-Tech na nekaterih delih strani nudi možnost, da uporabnik ob svojem prispevku navede svoje ime in/ali priimek (npr. pri novicah). Če želite uporabljati to funkcijo, potem morate polji ime in/ali priimek izpolniti. Lahko izpolnite tudi samo ime ali priimek.</p>
+                </div>
+                
+                <div class="register">
+                    <form method="post" id="register">
+                        <div class="error"></div>
+                        <input type="text" name="username" placeholder="Uporabniško ime*" required>
+                        <input type="password" name="password" placeholder="Geslo*" required>
+                        <input type="password" name="password_repeat" placeholder="Ponovi geslo*" required>
+                        <input type="email" name="email" placeholder="Elektronski naslov*" required>
+                        <input type="text" name="phone" placeholder="Mobilna številka">
+                        <select name="gender">
+                            <option value="">Spol</option>
+                            <option value="m">Moški</option>
+                            <option value="f">Ženski</option>
+                        </select>
+
+                        <div class="checkbox">
+                            <input type="checkbox" name="terms">
+                            <i class="fas fa-square"></i>
+                            <p>Strinjam se s <a href="pravila.html">pravili</a> Slo-Techa</p>
+                        </div>
+
+                        <button type="submit">Registracija</button>
+                    </form>
+                </div>            
+            </div>
+        </div>
